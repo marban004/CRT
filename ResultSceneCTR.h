@@ -22,7 +22,6 @@ class ResultSceneCTR : public Scene
         std::list<CongruenceEquation>* EquationListPointer;
         int* SolutionPointer;
         int* NPointer;
-        size_t SceneWidth;
 };
 
 #endif // RESULTSCENECTR_H

@@ -19,7 +19,6 @@ InfoScene::~InfoScene()
 
 void InfoScene::ShowScene()
 {
-        system("CLS");
         size_t StartPos = 0;
         std::string Line = "";
 

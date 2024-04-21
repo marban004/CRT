@@ -14,8 +14,11 @@ class ControllerCTR
         int Start(std::map<int, Menu>* MenuMap);
         void SolveEquation(std::map<int, std::shared_ptr<Scene>>*, std::list<CongruenceEquation>*);
         void Option1GetInput(std::map<int, std::shared_ptr<Scene>>*, std::list<CongruenceEquation>*, std::map<int, Menu>*);
+        bool Option2GetInput(std::map<int, std::shared_ptr<Scene>>*, int*, std::map<int, int>*);
         bool SolveEquation(std::map<int, std::shared_ptr<Scene>>*, std::list<CongruenceEquation>*, int*, int*);
         void ShowSolution(std::map<int, std::shared_ptr<Scene>>*);
+        void ShowFactorialFactorization(std::map<int, std::shared_ptr<Scene>>*);
+        void ShowFactorialFactorizationError(std::map<int, std::shared_ptr<Scene>>*);
         void ShowEquationError(std::map<int, std::shared_ptr<Scene>>*);
 
     protected:

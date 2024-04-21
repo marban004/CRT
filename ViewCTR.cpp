@@ -23,11 +23,13 @@ bool ViewCTR::SetMenuOption(int MenuNumber, int Option, std::map<int, Menu>* Men
 
 void ViewCTR::ShowMenu(int MenuNumber, std::map<int, Menu>* MenuMap)
 {
+    system("CLS");
     (*MenuMap)[MenuNumber].ShowMenu();
 }
 
 void ViewCTR::ShowScene(int SceneNumber, std::map<int, std::shared_ptr<Scene>>* SceneMap)
 {
+    system("CLS");
     FlushConsoleInputBuffer(u);
     COORD InputPos = (*SceneMap)[SceneNumber] -> GetCOORDForInput();
     (*SceneMap)[SceneNumber] -> ShowScene();

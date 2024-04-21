@@ -196,7 +196,6 @@ void Menu::ShowMenu()
 {
     size_t StartPos = 0;
     std::string Line = "";
-    system("CLS");
     HighlitedOption = -1;
     SetConsoleCursorPosition(u, {0, 0});
     std::cout << std::left << std::setfill('-') << std::setw(MenuWidth - 1) << "+" + MenuTitle << "+" << std::endl;
@@ -268,6 +267,11 @@ bool Menu::RefreshHighlight()
     HighlitedOption = Option;
 
     return true;
+}
+
+size_t Menu::GetNumberOfMenuElements()
+{
+    return MenuElem.size();
 }
 /* Test version in test1 project.
 Splits string first according to blank chars.

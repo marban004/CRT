@@ -19,7 +19,6 @@ InputScene::~InputScene()
 
 void InputScene::ShowScene()
 {
-        system("CLS");
         size_t StartPos = 0;
         std::string Line = "";
 

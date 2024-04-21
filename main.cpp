@@ -5,6 +5,7 @@
 #include "ResultSceneCTR.h"
 #include "InfoScene.h"
 #include "InputScene.h"
+#include "ResultSceneFactorialFactorization.h"
 #include <memory>
 
 
@@ -66,6 +67,7 @@ int main()
     int Option = -1;
     int Solution = 0;
     int N = 0;
+    std::map<int, int> FactorialFactorization;
     std::map<int, Menu> MenuMap;
     std::map<int, std::shared_ptr<Scene>> SceneMap;
     std::list<CongruenceEquation> EquationList;
@@ -81,10 +83,8 @@ int main()
     Scene.reset(new InputScene(AppWidth, "Podaj reszte kongruencji"));
     SceneMap.insert(std::make_pair(2, Scene));
 
-    /*
-    Scene.reset(new InfoScene(AppWidth, "To rownanie jest sprzeczne i nie ma rozwiazan"));
+    Scene.reset(new InfoScene(AppWidth, "Nie mozna przeprowadzic rozkladu dla tej silni"));
     SceneMap.insert(std::make_pair(3, Scene));
-    */
 
     Scene.reset(new InfoScene(AppWidth, "Podane podzielniki nie sa wzglednie pierwsze"));
     SceneMap.insert(std::make_pair(4, Scene));
@@ -98,8 +98,15 @@ int main()
     Scene.reset(new ResultSceneCTR(AppWidth, &Solution, &N, &EquationList));
     SceneMap.insert(std::make_pair(7, Scene));
 
+    Scene.reset(new ResultSceneFactorialFactorization(AppWidth, &N, &FactorialFactorization));
+    SceneMap.insert(std::make_pair(8, Scene));
+
+    Scene.reset(new InputScene(AppWidth, "Podaj liczbe, ktorej silni chcesz dokonac rozkladu"));
+    SceneMap.insert(std::make_pair(9, Scene));
+
     MenuMap.insert(std::make_pair(1, Menu(AppWidth, "Menu glowne")));
     MenuMap[1].AppendElement("* Chinskie twierdzenie o resztach");
+    MenuMap[1].AppendElement("* Rozklad silni");
     MenuMap[1].AppendElement("* Wyjdz");
 
     MenuMap.insert(std::make_pair(2, Menu(AppWidth, "")));
@@ -109,7 +116,7 @@ int main()
 
 
 
-    while(((Option = Controller.Start(&MenuMap)) != 1))
+    while(((Option = Controller.Start(&MenuMap)) != (MenuMap[1].GetNumberOfMenuElements() - 1)))
     {
 
     switch (Option)
@@ -127,6 +134,14 @@ int main()
         break;
 
     case 1:
+        if(Controller.Option2GetInput(&SceneMap, &N, &FactorialFactorization))
+        {
+            Controller.ShowFactorialFactorization(&SceneMap);
+        }
+        else
+        {
+            Controller.ShowFactorialFactorizationError(&SceneMap);
+        }
         break;
 
     default:

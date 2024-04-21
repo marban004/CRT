@@ -104,6 +104,24 @@ void ControllerCTR::Option1GetInput(std::map<int, std::shared_ptr<Scene>>* Scene
     }
 }
 
+bool ControllerCTR::Option2GetInput(std::map<int, std::shared_ptr<Scene>>* SceneMap, int* Factorial, std::map<int, int>* FactorialFactorization)
+{
+    View.ShowScene(9, SceneMap);
+    *Factorial = this -> GetValueInt();
+    return Model.FactorizeFactorial(FactorialFactorization, *Factorial);
+}
+
+void ControllerCTR::ShowFactorialFactorization(std::map<int, std::shared_ptr<Scene>>* SceneMap)
+{
+    View.ShowScene(8, SceneMap);
+    getch();
+}
+
+void ControllerCTR::ShowFactorialFactorizationError(std::map<int, std::shared_ptr<Scene>>* SceneMap)
+{
+    View.ShowScene(3, SceneMap);
+    getch();
+}
 
 int ControllerCTR::GetValueInt()
 {

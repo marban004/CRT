@@ -1,4 +1,5 @@
 #include "ModelCTR.h"
+#include <cmath>
 
 ModelCTR::ModelCTR() : X(0), N(0)
 {
@@ -94,6 +95,34 @@ int ModelCTR::SolveEquation()
     return X;
 }
 
+bool ModelCTR::FactorizeFactorial(std::map<int, int>* FactorialFactorization, int Factorial)
+{
+    if(Factorial < 2)
+    {
+        return false;
+    }
+    FactorialFactorization -> clear();
+    int CurrentPrimeNumber = 2;
+    int CurrentPrimeNumberTemp = 2;
+    int CurrentPrimeNumberExponent = 0;
+    int TempHoldingVar = 0;
+    do
+    {
+        CurrentPrimeNumberExponent = 0;
+        CurrentPrimeNumberTemp = CurrentPrimeNumber;
+        while((TempHoldingVar = Factorial/CurrentPrimeNumberTemp))
+        {
+            CurrentPrimeNumberExponent += TempHoldingVar;
+            CurrentPrimeNumberTemp *= CurrentPrimeNumber;
+        }
+        FactorialFactorization -> insert(std::make_pair(CurrentPrimeNumber, CurrentPrimeNumberExponent));
+        CurrentPrimeNumber = GetNextPrime(CurrentPrimeNumber);
+
+    }
+    while(CurrentPrimeNumber < Factorial);
+    return true;
+}
+
 void ModelCTR::ExtEuclideanAlg(int a, int b, int* GCD, int* M, int* SM)
 {
     int x = 1;
@@ -123,6 +152,30 @@ void ModelCTR::ExtEuclideanAlg(int a, int b, int* GCD, int* M, int* SM)
     *GCD = a;
     *M = x;
     *SM = y;
+}
+
+bool ModelCTR::IsPrime(int Number)
+{
+bool Result = true;
+int i;
+for(i = 2; i <= (int)sqrt((double)Number); i ++)
+    if (Number % i == 0)
+        {
+        Result = false;
+        break;
+        }
+return Result;
+}
+
+int ModelCTR::GetNextPrime(int Prevprime)
+{
+int i;
+for(i = Prevprime+1; /* !isPrime(i) */;i ++)
+    if (IsPrime(i))
+    {
+        break;
+    }
+return i;
 }
 
 int ModelCTR::GetN()
