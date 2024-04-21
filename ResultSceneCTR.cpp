@@ -2,7 +2,7 @@
 #include <iostream>
 #include <iomanip>
 
-ResultSceneCTR::ResultSceneCTR(int Width, int* SolutionPointer, int* NPointer, std::list<CongruenceEquation> *EquationListPointer) : EquationListPointer(nullptr), SolutionPointer(nullptr), NPointer(nullptr), SceneWidth(70)
+ResultSceneCTR::ResultSceneCTR(int Width, int* SolutionPointer, int* NPointer, std::list<CongruenceEquation> *EquationListPointer) : EquationListPointer(nullptr), SolutionPointer(nullptr), NPointer(nullptr)
 {
     SetSceneWidth(Width);
     SetSolutionPointer(SolutionPointer);
@@ -16,7 +16,6 @@ ResultSceneCTR::~ResultSceneCTR()
 }
 void ResultSceneCTR::ShowScene()
 {
-    system("CLS");
     std::cout << std::left << std::setfill('-') << std::setw(SceneWidth - 1) << "+Rozwiazanie" << "+" << std::endl;
     std::cout << std::left << std::setfill(' ') << std::setw(SceneWidth - 1) << "|Rozwiazanie tego ukladu kongruencji: " + std::to_string(*SolutionPointer) + " + (K * " + std::to_string(*NPointer) + ")" << "|" << std::endl;
     std::cout << std::left << std::setfill(' ') << std::setw(SceneWidth - 1) << "|Gdzie K to liczba calkowita" << "|" << std::endl;

@@ -3,6 +3,7 @@
 #define MODELCTR_H
 #include "CongruenceEquation.h"
 #include <list>
+#include <map>
 
 class ModelCTR
 {
@@ -13,11 +14,14 @@ class ModelCTR
         bool VerifyValues();
         int SolveEquation();
         int GetN();
+        bool FactorizeFactorial(std::map<int, int>*, int);
 
     protected:
 
     private:
         void ExtEuclideanAlg(int, int, int*, int*, int*);
+        bool IsPrime(int);
+        int GetNextPrime(int);
         std::list<int> Divisors;
         std::list<int> Rests;
         /*

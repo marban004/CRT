@@ -27,6 +27,7 @@ class Menu
         bool AppendElement(std::string);
         void ShowMenu();
         bool RefreshHighlight();
+        size_t GetNumberOfMenuElements();
 
     protected:
 
